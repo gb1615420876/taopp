@@ -27,4 +27,7 @@ export default {
 .main {
   height: 100%;
 }
+li,ul,ol{
+  list-style: none;
+}
 </style>

@@ -6,11 +6,4 @@
 html, body {
   height: 100%;
 }
-
-.index {
-  > div:first-child {
-    padding-bottom: 50px;
-  }
-}
-
 </style>

@@ -42,7 +42,7 @@ const getters = {
     })
   },
   fiexdList (state, getters) {
-    return getters.newCityList.map( item => {
+    return getters.newCityList.map(item => {
       return item.name
     })
   }
