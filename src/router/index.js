@@ -4,6 +4,7 @@ import Index from '../views/index/Index.vue'
 import Cinema from '../views/index/Cinema.vue'
 import Film from '../views/index/Film.vue'
 import Home from '../views/index/Home.vue'
+import City from '../views/city/index.vue'
 
 Vue.use(VueRouter)
 
@@ -18,7 +19,8 @@ const router = new VueRouter({
         { path: 'home', name: 'homes', component: Home, meta: { tabNumber: 2 } },
         { path: '', redirect: '/films' }
       ]
-    }
+    },
+    { path: '/city', name: 'city', component: City }
   ]
 })
 
