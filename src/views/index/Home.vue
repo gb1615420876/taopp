@@ -2,26 +2,26 @@
   <div class="home">
     <div class="head">
       <div class="pic"></div>
-      <p class="username">用户名</p>
+      <p class="username">{{ username }}</p>
     </div>
     <div class="nav">
-      <li class="ticket">
+      <li class="ticket" @click="$router.push({ name: 'ticket' })">
         <van-icon name="video-o" size='27px' color="#ff4d64"/>
         <p>电影票</p>
       </li>
-      <li class="Coupon">
+      <li class="Coupon" @click="$router.push({ name: 'coupon' })">
         <van-icon name="refund-o" size='27px' color="orange"/>
         <p>优惠券</p>
       </li>
       <span></span>
     </div>
     <ul class="home-list">
-      <li class="card">
+      <li class="card" @click="$router.push({ name: 'card' })">
         淘票票乐影卡
         <van-icon class="icon" name="arrow" size="12px" color="#bcbcbc" />
         <div></div>
       </li>
-      <li class="help">
+      <li class="help" @click="$router.push({ name: 'help' })">
         帮助与反馈
         <span>咨询票小蜜</span>
         <van-icon class="icon" name="arrow" size="12px"  color="#bcbcbc" />
@@ -32,7 +32,19 @@
 
 <script>
 export default {
-
+  data () {
+    return {
+      username: ''
+    }
+  },
+  created () {
+    let username = localStorage.getItem('username')
+    if (username === '') {
+      this.$router.replace({ name: 'login' })
+    } else {
+      this.username = username
+    }
+  }
 }
 </script>
 

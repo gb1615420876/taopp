@@ -5,6 +5,13 @@ import Cinema from '../views/index/Cinema.vue'
 import Film from '../views/index/Film.vue'
 import Home from '../views/index/Home.vue'
 import City from '../views/ctiy/index.vue'
+import Ticket from '../views/ticket/index.vue'
+import Coupon from '../views/coupon/index.vue'
+import Card from '../views/card/index.vue'
+import Help from '../views/card/help.vue'
+import Login from '../views/login/index.vue'
+import PhoneLogin from '../views/login/phone.vue'
+import Register from '../views/login/register.vue'
 
 Vue.use(VueRouter)
 
@@ -20,7 +27,14 @@ const router = new VueRouter({
         { path: '', redirect: '/films' }
       ]
     },
-    { path: '/city', name: 'city', component: City }
+    { path: '/city', name: 'city', component: City },
+    { path: '/ticket', name: 'ticket', component: Ticket },
+    { path: '/coupon', name: 'coupon', component: Coupon },
+    { path: '/card', name: 'card', component: Card },
+    { path: '/help', name: 'help', component: Help },
+    { path: '/login', name: 'login', component: Login },
+    { path: '/phone_login', name: 'phone_login', component: PhoneLogin },
+    { path: '/register', name: 'register', component: Register }
   ]
 })
 

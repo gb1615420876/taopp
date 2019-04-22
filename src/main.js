@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import { Tabbar, TabbarItem, NavBar, Icon} from 'vant'
+import { Tabbar, TabbarItem, NavBar, Icon } from 'vant'
 import store from './store'
 
 Vue.config.productionTip = false
