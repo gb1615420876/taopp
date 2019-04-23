@@ -12,12 +12,12 @@
 </template>
 
 <script>
- /* 下面三个导航 */
+/* 下面三个导航 */
 export default {
   data () {
     let active = this.$route.meta.tabNumber
-      return {
-        active: active
+    return {
+      active: active
     }
   }
 }
@@ -26,5 +26,8 @@ export default {
 <style lang="less">
 .main {
   height: 100%;
+}
+li,ul,ol{
+  list-style: none;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <div class="main">
-      <van-tabs v-model="curTab">
+  <div class="home-film">
+      <van-tabs v-model="curTab" @click="onTabClick">
         <van-tab title="正在上映">
           <nowPlaying v-if="curTab === 0"></nowPlaying>
         </van-tab>
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { mapActions, mapMutations, mapState } from 'vuex'
 import nowPlaying from '@/components/nowPlaying.vue'
 import commingSoon from '@/components/commingSoon.vue'
 export default {
@@ -25,7 +26,25 @@ export default {
     return {
       curTab: curTab
     }
-  }
+  },
+
+  methods: {
+    ...mapMutations('film', [
+      'clearData'
+    ]),
+
+    onTabClick (index, title) {
+      let filmType = index === 0 ? 'nowPlaying' : 'commingSoon'
+      this.clearData()
+
+      this.$router.replace({
+        name: 'films',
+        params: {
+          filmType
+        }
+      })
+    }
+  },
 }
 </script>
 
