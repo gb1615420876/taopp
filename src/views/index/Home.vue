@@ -3,6 +3,7 @@
     <div class="head">
       <div class="pic"></div>
       <p class="username">{{ username }}</p>
+      <div class="out" @click="clear">退出登录</div>
     </div>
     <div class="nav">
       <li class="ticket" @click="$router.push({ name: 'ticket' })">
@@ -44,6 +45,11 @@ export default {
     } else {
       this.username = username
     }
+  },
+  methods: {
+    clear () {
+      localStorage.clear()
+    }
   }
 }
 </script>
@@ -76,6 +82,19 @@ export default {
       font-weight: 500;
       font-size:20px;
       color:#fff;
+    }
+    .out{
+      font-size:14px;
+      position: absolute;
+      width:60px;
+      height:20px;
+      top:10px;
+      right: 15px;
+      border-radius: 5px;
+      background:orange;
+      text-align: center;
+      color:#fff;
+      opacity: 0.5;
     }
   }
   .nav{

@@ -36,7 +36,8 @@ const router = new VueRouter({
     { path: '/help', name: 'help', component: Help },
     { path: '/login', name: 'login', component: Login },
     { path: '/phone_login', name: 'phone_login', component: PhoneLogin },
-    { path: '/register', name: 'register', component: Register }
+    { path: '/register', name: 'register', component: Register },
+    { path: '/search', name: 'search', component: Search }
   ]
 })
 

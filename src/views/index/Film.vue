@@ -1,51 +1,56 @@
-/* <template>
+<template>
   <div class="home-film">
-    <van-tabs v-model="active">
-      <van-tab title="正在热映">
-        <van-list
-          v-model="loading"
-          :finished="finished"
-          finished-text="没有更多了"
-          @load="onLoad"
-        >
-          <van-cell
-            v-for="item in 100"
-            :key="item"
-            :title="item"
-          />
-        </van-list>
-      </van-tab>
-      <van-tab title="即将上映">内容 2</van-tab>
-    </van-tabs>
+      <van-tabs v-model="curTab" @click="onTabClick">
+        <van-tab title="正在上映">
+          <nowPlaying v-if="curTab === 0"></nowPlaying>
+        </van-tab>
+        <van-tab title="即将热映">
+          <commingSoon v-if="curTab === 1"></commingSoon>
+        </van-tab>
+      </van-tabs>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+import nowPlaying from '@/components/nowPlaying.vue'
+import commingSoon from '@/components/commingSoon.vue'
 export default {
+  components: {
+    nowPlaying,
+    commingSoon
+  },
+
   data () {
+    let curTab = this.$route.params.filmType === 'nowPlaying' ? 0 : 1
     return {
-      active: 2,
-      list: [],
-      loading: false,
-      finished: false
+      curTab: curTab
+    }
+  },
+
+  methods: {
+    ...mapMutations('film', [
+      'clearData'
+    ]),
+
+    onTabClick (index, title) {
+      let filmType = index === 0 ? 'nowPlaying' : 'commingSoon'
+      this.clearData()
+
+      this.$router.replace({
+        name: 'films',
+        params: {
+          filmType
+        }
+      })
     }
   }
 }
 </script>
 
 <style lang="less">
-  .van-tab{
-    flex: none;
-    width: 94px;
-    height: 50px;
-    line-height: 50px;
-    font-size: 16px;
-    right: 0;
-  }
-  .van-tab--active{
-    color: #ff4d64;
+  .van-tab--active {
     font-weight: 700;
+    color: #ff4d64
   }
-
 </style>
- */

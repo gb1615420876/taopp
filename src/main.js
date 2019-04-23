@@ -8,8 +8,9 @@ Vue.config.productionTip = false
 
 Vue.use(Tabbar)
   .use(TabbarItem)
-  .use(NavBar)
   .use(Icon)
+  .use(List)
+  .use(NavBar)
   .use(Tab)
   .use(Tabs)
   .use(List)
