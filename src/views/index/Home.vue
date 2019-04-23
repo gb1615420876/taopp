@@ -70,7 +70,7 @@ export default {
     .username{
       position: absolute;
       margin-left:115px;
-      top:38px;
+      top:60px;
       height:20px;
       line-height: 20px;
       font-weight: 500;
