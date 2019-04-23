@@ -4,7 +4,7 @@ import Index from '../views/index/Index.vue'
 import Cinema from '../views/index/Cinema.vue'
 import Film from '../views/index/Film.vue'
 import Home from '../views/index/Home.vue'
-import City from '../views/ctiy/index.vue'
+import City from '../views/city/index.vue'
 import Ticket from '../views/ticket/index.vue'
 import Coupon from '../views/coupon/index.vue'
 import Card from '../views/card/index.vue'
@@ -27,8 +27,7 @@ const router = new VueRouter({
         { path: 'films', name: 'films', component: Film, meta: { tabNumber: 0 } },
         { path: 'cinemas', name: 'cinemas', component: Cinema, meta: { tabNumber: 1 } },
         { path: 'home', name: 'homes', component: Home, meta: { tabNumber: 2 } },
-        { path: '', redirect: '/films' },
-        { path: 'sousuo', name: 'sousuo', component: sousuo }
+        { path: '', redirect: '/films' }
       ]
     },
     { path: '/search', name: 'search', component: Search },
@@ -39,7 +38,8 @@ const router = new VueRouter({
     { path: '/help', name: 'help', component: Help },
     { path: '/login', name: 'login', component: Login },
     { path: '/phone_login', name: 'phone_login', component: PhoneLogin },
-    { path: '/register', name: 'register', component: Register }
+    { path: '/register', name: 'register', component: Register },
+    { path: '/search', name: 'search', component: Search }
   ]
 })
 
