@@ -14,6 +14,8 @@ import PhoneLogin from '../views/login/phone.vue'
 import Register from '../views/login/register.vue'
 import Search from '../views/search/index.vue'
 
+import sousuo from '../views/search/search.vue'
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -26,9 +28,10 @@ const router = new VueRouter({
         { path: 'cinemas', name: 'cinemas', component: Cinema, meta: { tabNumber: 1 } },
         { path: 'home', name: 'homes', component: Home, meta: { tabNumber: 2 } },
         { path: '', redirect: '/films' },
-        { path: 'search', name: 'search', component: Search }
+        { path: 'sousuo', name: 'sousuo', component: sousuo }
       ]
     },
+    { path: '/search', name: 'search', component: Search },
     { path: '/city', name: 'city', component: City },
     { path: '/ticket', name: 'ticket', component: Ticket },
     { path: '/coupon', name: 'coupon', component: Coupon },

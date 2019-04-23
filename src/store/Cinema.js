@@ -1,23 +1,45 @@
 import axios from 'axios'
 const state = {
-  cinemaList: []
+  cinemaList: [],
+  arr: []
 }
 const geters = {
 
 }
 const mutations = {
   setCinameList (state, list) {
-    state.cinemaList = list
+    state.cinemaList =list
+  },
+  setarr (state, arr) {
+    state.arr = arr
   }
 }
 const actions = {
-  getCinemaList ({ commit }) {
-    axios.get('./json/cinemalist.json')
+  getCinemaList ({ commit, rootState }) {
+    let cityId = rootState.city.cityId
+    axios.get('https://m.maizuo.com/gateway', {
+      params: {
+        cityId: cityId,
+        ticketFlag: 1,
+        k: 2146279
+      },
+      headers: {
+        'X-Client-Info': '{"a":"3000","ch":"1002","v":"5.0.4","e":"1555072806618475291288"}',
+        'X-Host': 'mall.film-ticket.cinema.list'
+      }
+    })
       .then(res => {
         let result = res.data
-        commit('setCinameList', result)
-        console.log(result)
+        commit('setCinameList', result.data.cinemas)
       })
+  },
+  searchCinema ({ commit, state }, value) {
+    console.log(value)
+    console.log(state)
+    let arr = state.cinemaList.filter(item => {
+      return item.name.indexOf(value) > -1
+    })
+    commit('setarr',arr)
   }
 }
 export default {

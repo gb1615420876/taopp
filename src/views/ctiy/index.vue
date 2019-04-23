@@ -71,7 +71,7 @@ export default {
     ]),
     cityOk (city) {
       this.trueCity(city)
-      this.$router.replace({ name: 'films' })
+      this.$router.back()
     },
     scroll (letter) {
       let boxEl = document.getElementById('list-' + letter)
