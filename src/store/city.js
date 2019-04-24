@@ -2,7 +2,8 @@ import axios from 'axios'
 
 const state = {
   cityList: [],
-  trueCity: localStorage.getItem('trueCity') || '深圳'
+  trueCity: localStorage.getItem('trueCity') || '深圳',
+  cityId: 440300
 }
 
 const getters = {
@@ -71,6 +72,10 @@ const mutations = {
   trueCity (state, city) {
     localStorage.setItem('trueCity', city)
     state.trueCity = city
+    let clickcity = state.cityList.filter(itme => {
+      return itme.name == city
+    })
+    state.cityId = clickcity[0].cityId
   }
 }
 
