@@ -52,7 +52,7 @@ export default {
   },
   created () {
     this.getCinemaList()
-  },
+  }
 }
 </script>
 <style lang="less">
@@ -130,6 +130,4 @@ body{font-family: "微软雅黑"}
     margin:15px;
   }
 
-
 </style>
-

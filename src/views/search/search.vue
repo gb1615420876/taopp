@@ -12,29 +12,29 @@
 export default {
   data () {
     return {
-      isshow:true,
-      city:"",
-      citys:['北京','北海','东北','上海','武汉','东京','广州','广元市','上饶','上水市'],
-      selectCitys:[]
+      isshow: true,
+      city: "",
+      citys: ['北京', '北海', '东北', '上海', '武汉', '东京', '广州', '广元市', '上饶', '上水市'],
+      selectCitys: []
     }
   },
   methods:{
 
   },
   watch:{
-    city:function(val, oldVal){
-      if(val.length==0){
-         this.isshow = false
-       }else{
+    city: function (val, oldVal) {
+      if (val.length == 0) {
+        this.isshow = false
+       } else {
           this.isshow = true;
           var citys = []
-          this.citys.forEach((item,index) => {
-              if(item.indexOf(val)>=0){
-                  citys.unshift(item)
-              }
+          this.citys.forEach((item, index) => {
+            if (item.indexOf(val) >= 0) {
+              citys.unshift(item)
+            }
           })
-          this.selectCitys = citys;
-       }
+          this.selectCitys = citys
+        }
     }
   }
 }

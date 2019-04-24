@@ -40,8 +40,8 @@ export default {
   },
   created () {
     let username = localStorage.getItem('username')
-    if (username === '') {
-      this.$router.replace({ name: 'login' })
+    if (username === null) {
+      this.$router.push({ name: 'login' })
     } else {
       this.username = username
     }
@@ -49,6 +49,7 @@ export default {
   methods: {
     clear () {
       localStorage.clear()
+      this.$router.go(0)
     }
   }
 }
