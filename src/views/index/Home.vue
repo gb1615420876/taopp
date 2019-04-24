@@ -6,11 +6,11 @@
       <div class="out" @click="clear">退出登录</div>
     </div>
     <div class="nav">
-      <li class="ticket" @click="$router.push({ name: 'ticket' })">
+      <li class="goticket" @click="$router.push({ name: 'ticket' })">
         <van-icon name="video-o" size='27px' color="#ff4d64"/>
         <p>电影票</p>
       </li>
-      <li class="Coupon" @click="$router.push({ name: 'coupon' })">
+      <li class="goCoupon" @click="$router.push({ name: 'coupon' })">
         <van-icon name="refund-o" size='27px' color="orange"/>
         <p>优惠券</p>
       </li>

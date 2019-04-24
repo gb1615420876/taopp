@@ -19,7 +19,6 @@ export default {
     }
   },
   methods:{
-
   },
   watch:{
     city: function (val, oldVal) {

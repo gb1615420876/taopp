@@ -43,10 +43,9 @@ export default {
 </script>
 
 <style lang="less">
-  body{
-    background:#f8f8f8;
-  }
   .ticket{
+    height:100%;
+    background:#f8f8f8;
     .item{
       height:100px;
       margin-top: 10px;
