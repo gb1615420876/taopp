@@ -8,13 +8,14 @@ const getters = {
 }
 const mutations = {
   setCinameList (state, list) {
-    state.cinemaList =list
+    state.cinemaList = list
   },
   setarr (state, arr) {
     state.arr = arr
   }
 }
 const actions = {
+  //根据城市获取该城市的电影院列表
   getCinemaList ({ commit, rootState }) {
     let cityId = rootState.city.cityId
     axios.get('https://m.maizuo.com/gateway', {

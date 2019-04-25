@@ -16,6 +16,7 @@ import CinemasDetails from '../views/details/cinemasDetails.vue'
 import FilmDetails from '../views/filmDetails/index.vue'
 import Problem from '../components/problem.vue'
 import Addcoupon from '../components/addcoupon.vue'
+import Buy from '../views/buy/index.vue'
 
 Vue.use(VueRouter)
 
@@ -42,7 +43,8 @@ const router = new VueRouter({
     { path: '/cinemasDetails/:id', name: 'cinemasDetails', component: CinemasDetails },
     { path: '/filmDetails/:id', name: 'filmDetails', component: FilmDetails },
     { path: '/problem', name: 'problem', component: Problem },
-    { path: '/addcoupon', name: 'addcoupon', component: Addcoupon }
+    { path: '/addcoupon', name: 'addcoupon', component: Addcoupon },
+    { path: '/buy', name: 'buy', component: Buy }
   ]
 })
 

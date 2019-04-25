@@ -10,12 +10,14 @@
     />
   </form>
   <ul v-show="isshow" class="list-ul">
-    <li v-for="item in arr" :key="item.cinemaId" class="list-li">
+    <li v-for="item in arr" :key="item.cinemaId" class="list-li" >
+      <router-link :to="'/cinemasDetails/' + item.cinemaId ">
       <div class="list-title">
         <span class="cinema-name">{{ item.name }}</span>
         <span class="cinema-price">{{ (item.lowPrice)/100 }}<i>元</i><em>起</em></span>
-    </div>
-    <div class="list-location">{{ item.address}}</div>
+      </div>
+      <div class="list-location">{{ item.address}}</div>
+      </router-link>
     </li>
   </ul>
   </div>

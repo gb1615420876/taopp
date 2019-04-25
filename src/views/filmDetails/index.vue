@@ -1,6 +1,9 @@
 <template>
   <div class="filmDetails" >
     <div class="header-img">
+      <div class="img-item" @click="$router.back()">
+        <img :src="back" alt="返回">
+      </div>
       <img :src="filmdetails.poster" alt="影片图片">
     </div>
     <div class="film-detail">
@@ -15,7 +18,7 @@
         </div>
       </div>
       <div class="film-category">{{ filmdetails.category }}</div>
-      <div class="film-premiere-time">2019-04-24上映</div>
+      <div class="film-premiere-time">{{ filmdetails.premiereAt*1000 | formatDate}}上映</div>
       <div class="film-nation-runtime">{{ filmdetails.nation }} | {{ filmdetails.runtime }} 分钟</div>
       <div class="film-synopsis">{{ filmdetails.synopsis}}</div>
     </div>
@@ -28,7 +31,7 @@
               <li class="row-scroll-item">
                 <img :src="actors.avatarAddress" alt="">
                 <span class="actors-name">{{ actors.name }}</span>
-                <span class="actors-role"> {{ actors.role}}</span>
+                <span class="actors-role"> {{ actors.role }}</span>
               </li>
             </div>
           </div>
@@ -38,31 +41,20 @@
     <div class="photos">
       <div class="photos-title-bar">
         <span class="photos-title-text">剧照</span>
-        <span class="photos-to-all">全部(8) <van-icon name="arrow" /></span>
+        <span class="photos-to-all">全部({{ filmdetails.photos && filmdetails.photos.length}}) <van-icon name="arrow" /></span>
       </div>
       <ul class="row-scroll-items-nav">
         <div class="swiper-container b">
           <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="photos
-             in (filmdetails.photos)" :key="photos.index">
-              <li class="row-scroll-item">
+            <div class="swiper-slide" v-for="photos in (filmdetails.photos)" :key="photos.index">
+              <li class="row-photos-li">
               <img :src="photos" alt="">
             </li>
             </div>
           </div>
         </div>
-
       </ul>
     </div>
-<!--
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">slider1</div>
-        <div class="swiper-slide">slider2</div>
-        <div class="swiper-slide">slider3</div>
-      </div>
-    </div> -->
-
   </div>
 </template>
 
@@ -73,41 +65,51 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
   data () {
     return {
-
+      back: './images/back.png'
     }
   },
-  computed:{
-    ...mapState('FilmDetails',[
+  computed: {
+    ...mapState('FilmDetails', [
       'filmdetails'
     ])
   },
   methods: {
-    ...mapActions('FilmDetails',[
+    ...mapActions('FilmDetails', [
       'getfilmdetails'
     ])
   },
-
+  filters: {
+      formatDate: function (value) {
+        let date = new Date(value);
+        let y = date.getFullYear();
+        let MM = date.getMonth() + 1;
+        MM = MM < 10 ? ('0' + MM) : MM;
+        let d = date.getDate();
+        d = d < 10 ? ('0' + d) : d;
+        return y + '-' + MM + '-' + d ;
+      }
+  },
   created () {
     this.getfilmdetails({
       filmId: this.$route.params.id,
       callback: () => {
         this.$nextTick(() => {
           new Swiper('.a', {
-            slidesPerView : 3,
-            slidesPerGroup : 3,
+            slidesPerView: 3,
+            slidesPerGroup: 3
+          })
+        })
+        this.$nextTick(() => {
+          new Swiper('.b', {
+            slidesPerView: 3,
+            slidesPerGroup: 3
           })
         })
       }
     })
-
   },
-  components: {
-    swiper,
-    swiperSlide
-  },
-   mounted() {
-
-   }
+  components: {},
+  mounted () {}
 }
 
 </script>
@@ -119,6 +121,17 @@ export default {
     width: 375px;
     height: 211px;
     background: #fff;
+    position: relative;
+    .img-item{
+      position: absolute;
+      top: 10px;
+      left: 5px;
+      width: 30px;
+      height: 30px;
+      img{
+        display:block;
+      }
+    }
     img{
       display: block;
       height: 100%;
@@ -250,10 +263,11 @@ export default {
       overflow: hidden;
       display: flex;
       height: 100px;
-      .row-scroll-item{
-        width: 150px;
+      .row-photos-li{
+        width: 100%;
         margin-left: 15px;
         img{
+          display:block;
           width: 150px;
           height: 100%;
         }
