@@ -3,7 +3,7 @@ import axios from 'axios'
 const state = {
   cityList: [],
   trueCity: localStorage.getItem('trueCity') || '深圳',
-  cityId: 440300
+  cityId: localStorage.getItem('trueCityId') || 440300
 }
 
 const getters = {
@@ -69,13 +69,14 @@ const mutations = {
   setCityList (state, list) {
     state.cityList = list
   },
-  trueCity (state, city) {
-    localStorage.setItem('trueCity', city)
-    state.trueCity = city
-    let clickcity = state.cityList.filter(itme => {
-      return itme.name == city
-    })
-    state.cityId = clickcity[0].cityId
+  trueCity (state, arr) {
+    localStorage.setItem('trueCity', arr[0])
+    localStorage.setItem('trueCityId', arr[1])
+    state.trueCity = arr[0]
+    // let clickcity = state.cityList.filter(itme => {
+    //   return itme.name == arr[0]
+    // })
+    state.cityId = arr[1]
   }
 }
 
