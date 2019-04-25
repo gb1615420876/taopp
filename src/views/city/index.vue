@@ -4,8 +4,8 @@
       title="选择城市"
       right-text="✕"
       left-arrow
-      @click-right="$router.replace({ name: 'films'})"
-      @click-left="$router.replace({ name: 'films'})"
+      @click-right="$router.back()"
+      @click-left="$router.back()"
     />
     <div class="city-list">
       <ol class="auto-top">
@@ -39,7 +39,9 @@
         </div>
       </ol>
     </div>
-    <div class="fixed-list">
+    <transition
+    enter-active-class="animated bounceInRight">
+    <div v-show='isshow' class="fixed-list">
       <ul>
         <li @click="scroll('now')">当前</li>
         <li @click="scroll('GPS')">GPS</li>
@@ -49,12 +51,18 @@
         @click="scroll(letter)">{{ letter }}</li>
       </ul>
     </div>
+    </transition>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
+  data () {
+    return {
+      isshow: false
+    }
+  },
   computed: {
     ...mapGetters('city', [
       'newCityList',
@@ -81,7 +89,11 @@ export default {
   },
   created: function () {
     this.getCityList()
-  }
+  },
+  beforeUpdate() {
+    this.isshow = true;
+
+  },
 }
 </script>
 

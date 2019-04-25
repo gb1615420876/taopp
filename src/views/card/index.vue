@@ -4,7 +4,7 @@
         <img src="//gw.alicdn.com/tfs/TB1kuxwmxTpK1RjSZFKXXa2wXXa-330-210.png" alt="">
         <div class="remain">余额(元)</div>
         <div class="amount">0.00</div>
-        <div class="btn">立即绑卡</div>
+        <div class="btn" @click="$router.push({ name: 'addcard'})">立即绑卡</div>
       </div>
       <div class="content">
         <li class="problem" @click="$router.push({ name: 'problem'})">

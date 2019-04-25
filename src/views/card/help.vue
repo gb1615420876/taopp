@@ -1,6 +1,6 @@
 <template>
     <div class="help-mod">
-      help
+      <iframe src="https://h5.m.taobao.com/alicare/index.html?from=tpp_alipay_care&bu=tpp" frameborder="0"></iframe>
     </div>
 </template>
 
@@ -20,10 +20,9 @@ export default {
 <style lang="less">
   .help-mod{
     height:100%;
-    .head{
-      width:327px;
-      height:242px;
-      padding:24px;
+    iframe{
+      height: 100%;
+      width:100%;
     }
   }
 </style>
