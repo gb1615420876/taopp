@@ -3,7 +3,7 @@ const state = {
   cinemaList: [],
   arr: []
 }
-const geters = {
+const getters = {
 
 }
 const mutations = {
@@ -34,8 +34,6 @@ const actions = {
       })
   },
   searchCinema ({ commit, state }, value) {
-    console.log(value)
-    console.log(state)
     let arr = state.cinemaList.filter(item => {
       return item.name.indexOf(value) > -1
     })
@@ -45,7 +43,7 @@ const actions = {
 export default {
   namespaced: true,
   state,
-  geters,
+  getters,
   mutations,
   actions
 }

@@ -28,9 +28,8 @@ export default {
   methods: {
     Sign_in () {
       if (this.value != '' && this.pwd != '') {
-        console.log(1)
         localStorage.setItem('username', this.value)
-        this.$router.replace({ name: 'homes' })
+        this.$router.back()
       }
     }
   }
@@ -38,6 +37,9 @@ export default {
 </script>
 
 <style lang="less">
+  body{
+    background: #fff;
+  }
   .login{
     width:100%;
     height:100%;
@@ -61,6 +63,7 @@ export default {
           border: 0;
           height:18px;
           width:250px;
+          background-color: transparent;
         }
       }
     }

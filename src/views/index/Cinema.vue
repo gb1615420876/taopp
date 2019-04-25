@@ -1,27 +1,32 @@
 <template>
   <div class="Cinema">
     <div class="cinema-header">
-      <div class="cinema-left" @click="$router.push({ name: 'city'})">{{ trueCity }} <van-icon name="arrow-down" /></div>
-      <div class="cinema-center">影院</div>
-      <div class="cinema-right" @click="$router.push({ name: 'search'})"><van-icon name="search" /></div>
+      <div class="cinema-left" @click="$router.push({ name: 'city'})">{{ trueCity }} <van-icon name="arrow-down"/></div>
+        <div class="cinema-center">影院</div>
+        <div class="cinema-right" @click="$router.push({ name: 'search'})"><van-icon name="search" /></div>
     </div>
     <ul class="list-ul">
-    <li v-for="item in cinemaList" :key="item.cinemaId" class="list-li" >
-      <router-link :to="'/cinemasDetails/' + item.cinemaId ">
-        <div class="list-title">
-          <span class="cinema-name">{{ item.name }}</span>
-          <span class="cinema-price">{{ (item.lowPrice)/100 }}<i>元</i><em>起</em></span>
-        </div>
-        <div class="list-location">{{ item.address}}</div>
-      </router-link>
-    </li>
-  </ul>
+        <li v-for="item in cinemaList" :key="item.cinemaId" class="list-li" >
+          <router-link :to="'/cinemasDetails/' + item.cinemaId ">
+            <div class="list-title">
+              <span class="cinema-name">{{ item.name }}</span>
+              <span class="cinema-price">{{ (item.lowPrice)/100 }}<i>元</i><em>起</em></span>
+            </div>
+            <div class="list-location">{{ item.address}}</div>
+          </router-link>
+        </li>
+      </ul>
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex'
 export default {
+  data () {
+    return {
+      path:'./images/logo.jpg'
+    }
+  },
   computed: {
     ...mapState('Cinema', [
       'cinemaList'
@@ -126,4 +131,5 @@ body{font-family: "微软雅黑"}
     overflow: hidden;
     margin:15px;
   }
+
 </style>

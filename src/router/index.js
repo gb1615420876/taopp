@@ -14,6 +14,7 @@ import PhoneLogin from '../views/login/phone.vue'
 import Register from '../views/login/register.vue'
 import Search from '../views/search/index.vue'
 import CinemasDetails from '../views/details/cinemasDetails.vue'
+import FilmDetails from '../views/filmDetails/index.vue'
 
 Vue.use(VueRouter)
 
@@ -38,7 +39,8 @@ const router = new VueRouter({
     { path: '/login', name: 'login', component: Login },
     { path: '/phone_login', name: 'phone_login', component: PhoneLogin },
     { path: '/register', name: 'register', component: Register },
-    { path: '/cinemasDetails/:id', name: 'cinemasDetails', component: CinemasDetails }
+    { path: '/cinemasDetails/:id', name: 'cinemasDetails', component: CinemasDetails },
+    { path: '/filmDetails/:id', name: 'filmDetails', component: FilmDetails }
 
   ]
 })

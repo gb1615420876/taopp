@@ -4,8 +4,8 @@
       title="选择城市"
       right-text="✕"
       left-arrow
-      @click-right="$router.back()"
-      @click-left="$router.back()"
+      @click-right="$router.replace({ name: 'films'})"
+      @click-left="$router.replace({ name: 'films'})"
     />
     <div class="city-list">
       <ol class="auto-top">
