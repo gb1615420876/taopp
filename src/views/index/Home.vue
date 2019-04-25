@@ -3,13 +3,14 @@
     <div class="head">
       <div class="pic"></div>
       <p class="username">{{ username }}</p>
+      <div class="out" @click="clear">退出登录</div>
     </div>
     <div class="nav">
-      <li class="ticket" @click="$router.push({ name: 'ticket' })">
+      <li class="goticket" @click="$router.push({ name: 'ticket' })">
         <van-icon name="video-o" size='27px' color="#ff4d64"/>
         <p>电影票</p>
       </li>
-      <li class="Coupon" @click="$router.push({ name: 'coupon' })">
+      <li class="goCoupon" @click="$router.push({ name: 'coupon' })">
         <van-icon name="refund-o" size='27px' color="orange"/>
         <p>优惠券</p>
       </li>
@@ -39,10 +40,16 @@ export default {
   },
   created () {
     let username = localStorage.getItem('username')
-    if (username === '') {
-      this.$router.replace({ name: 'login' })
+    if (username === null) {
+      this.$router.push({ name: 'login' })
     } else {
       this.username = username
+    }
+  },
+  methods: {
+    clear () {
+      localStorage.clear()
+      this.$router.go(0)
     }
   }
 }
@@ -70,12 +77,25 @@ export default {
     .username{
       position: absolute;
       margin-left:115px;
-      top:38px;
+      top:60px;
       height:20px;
       line-height: 20px;
       font-weight: 500;
       font-size:20px;
       color:#fff;
+    }
+    .out{
+      font-size:14px;
+      position: absolute;
+      width:60px;
+      height:20px;
+      top:10px;
+      right: 15px;
+      border-radius: 5px;
+      background:orange;
+      text-align: center;
+      color:#fff;
+      opacity: 0.5;
     }
   }
   .nav{

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapActions, mapMutations, mapState } from 'vuex'
+import { mapMutations } from 'vuex'
 import nowPlaying from '@/components/nowPlaying.vue'
 import commingSoon from '@/components/commingSoon.vue'
 export default {
