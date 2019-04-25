@@ -13,8 +13,7 @@ import Login from '../views/login/index.vue'
 import PhoneLogin from '../views/login/phone.vue'
 import Register from '../views/login/register.vue'
 import Search from '../views/search/index.vue'
-
-import sousuo from '../views/search/search.vue'
+import CinemasDetails from '../views/details/cinemasDetails.vue'
 
 Vue.use(VueRouter)
 
@@ -39,7 +38,8 @@ const router = new VueRouter({
     { path: '/login', name: 'login', component: Login },
     { path: '/phone_login', name: 'phone_login', component: PhoneLogin },
     { path: '/register', name: 'register', component: Register },
-    { path: '/search', name: 'search', component: Search }
+    { path: '/cinemasDetails/:id', name: 'cinemasDetails', component: CinemasDetails }
+
   ]
 })
 

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapActions, mapMutations, mapState } from 'vuex'
+import { mapMutations } from 'vuex'
 import nowPlaying from '@/components/nowPlaying.vue'
 import commingSoon from '@/components/commingSoon.vue'
 export default {
@@ -22,7 +22,7 @@ export default {
   },
 
   data () {
-    let curTab = this.$route.params.filmType === 'nowPlaying' ? 0 : 1
+    let curTab = this.$route.params.filmType === 'nowPlaying' ? 1 : 0
     return {
       curTab: curTab
     }
@@ -44,7 +44,7 @@ export default {
         }
       })
     }
-  },
+  }
 }
 </script>
 

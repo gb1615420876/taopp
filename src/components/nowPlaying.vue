@@ -10,7 +10,7 @@
           <li class="item"
             v-for="item in filmList"
             :key="item.filmId">
-            <router-link :to="'/film/' + item.filmId">
+            <router-link :to="'/filmDetails/' + item.filmId">
               <div class="img">
                 <img :src="item.poster" alt />
               </div>
