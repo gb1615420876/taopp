@@ -16,7 +16,7 @@
           <li class="item"
             v-for="item in filmList"
             :key="item.filmId">
-            <router-link :to="{ name: 'filmDetail', params: { filmId: item.filmId } }">
+            <router-link :to="'filmDetails/' + item.filmId ">
               <div class="img">
                 <img :src="item.poster" alt />
               </div>

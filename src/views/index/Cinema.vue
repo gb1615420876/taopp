@@ -1,7 +1,7 @@
 <template>
   <div class="Cinema">
     <div class="cinema-header">
-      <div class="cinema-left" @click="$router.push({ name: 'city'})">{{ trueCity }} <van-icon name="arrow-down" /></div>
+    <div class="cinema-left" @click="$router.push({ name: 'city'})">{{ trueCity }} <van-icon name="arrow-down"/></div>
       <div class="cinema-center">影院</div>
       <div class="cinema-right" @click="$router.push({ name: 'search'})"><van-icon name="search" /></div>
     </div>
@@ -22,7 +22,7 @@ import { mapActions, mapState } from 'vuex'
 export default {
   data () {
     return {
-
+      path:'./images/logo.jpg'
     }
   },
   computed: {

@@ -22,7 +22,7 @@ export default {
   },
 
   data () {
-    let curTab = this.$route.params.filmType === 'nowPlaying' ? 0 : 1
+    let curTab = this.$route.params.filmType === 'nowPlaying' ? 1 : 0
     return {
       curTab: curTab
     }
@@ -44,7 +44,7 @@ export default {
         }
       })
     }
-  },
+  }
 }
 </script>
 
