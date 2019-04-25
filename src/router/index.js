@@ -14,6 +14,8 @@ import PhoneLogin from '../views/login/phone.vue'
 import Register from '../views/login/register.vue'
 import CinemasDetails from '../views/details/cinemasDetails.vue'
 import FilmDetails from '../views/filmDetails/index.vue'
+import Problem from '../components/problem.vue'
+import Addcoupon from '../components/addcoupon.vue'
 
 Vue.use(VueRouter)
 
@@ -38,7 +40,9 @@ const router = new VueRouter({
     { path: '/phone_login', name: 'phone_login', component: PhoneLogin },
     { path: '/register', name: 'register', component: Register },
     { path: '/cinemasDetails/:id', name: 'cinemasDetails', component: CinemasDetails },
-    { path: '/filmDetails/:id', name: 'filmDetails', component: FilmDetails }
+    { path: '/filmDetails/:id', name: 'filmDetails', component: FilmDetails },
+    { path: '/problem', name: 'problem', component: Problem },
+    { path: '/addcoupon', name: 'addcoupon', component: Addcoupon }
   ]
 })
 
