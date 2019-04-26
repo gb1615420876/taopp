@@ -18,6 +18,7 @@ import Problem from '../components/problem.vue'
 import Addcoupon from '../components/addcoupon.vue'
 import Buy from '../views/buy/index.vue'
 import Addcard from '../components/addcard.vue'
+import Search from '../views/search/index.vue'
 
 Vue.use(VueRouter)
 
@@ -46,7 +47,8 @@ const router = new VueRouter({
     { path: '/problem', name: 'problem', component: Problem },
     { path: '/addcoupon', name: 'addcoupon', component: Addcoupon },
     { path: '/buy', name: 'buy', component: Buy },
-    { path: '/addcard', name: 'addcard', component: Addcard }
+    { path: '/addcard', name: 'addcard', component: Addcard },
+    { path: '/search', name: 'search', component: Search }
 
   ]
 })

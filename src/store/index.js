@@ -7,6 +7,7 @@ import CinemaDetails from './CinemaDetails'
 import FilmDetails from './filmDetails'
 import ticket from './ticket'
 import Coupon from './coupon'
+import Buy from './buy'
 
 Vue.use(Vuex)
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
     CinemaDetails,
     FilmDetails,
     ticket,
-    Coupon
+    Coupon,
+    Buy
   }
 })
