@@ -6,7 +6,7 @@ const state = {
   filmPageSize: 20,
   filmTotal: 20,
   loading: false,
-  filmName:''
+  filmName: ''
 }
 
 const getters = {

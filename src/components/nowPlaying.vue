@@ -71,15 +71,14 @@ export default {
     ...mapActions('film', [
       'getFilmList'
     ]),
-    fn1 ( filmName ) {
-      this.$router.push({ name: 'buy'})
+    fn1 (filmName) {
+      this.$router.push({ name: 'buy' })
       this.setFilmName(filmName)
     },
     ...mapMutations('film', [
       'setFilmName'
     ])
   },
-
   filters: {
     formatActors (value = []) {
       let tmp = []

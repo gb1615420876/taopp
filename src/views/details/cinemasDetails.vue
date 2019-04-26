@@ -24,7 +24,7 @@
         <em>{{ item.grade }} &nbsp;</em>分
       </div>
       <p class="bottom">{{ item.category }} | {{ item.runtime }}分钟 | {{ item.director }}</p>
-      <van-icon name="arrow" class="arrow-right"/>
+      <van-icon name="arrow" class="arrow-right" @click="$router.push({ name: 'filmDetails', params: { id: filmId } })"/>
     </div>
     <van-tabs v-model="active" @click="fn3" sticky>
       <van-tab title="今天">
@@ -38,7 +38,7 @@
             <span>{{ film.hallName }}</span>
           </div>
           <div class="price">￥{{ film.salePrice / 100 }}</div>
-          <router-link class="sale" :to="'/buy/' + filmId">购票</router-link>
+          <router-link class="sale" :to="'/pay/'">购票</router-link>
         </li>
       </van-tab>
       <van-tab title="明天" >
@@ -47,12 +47,12 @@
             <span>{{ new Date(film.showAt * 1000).getHours() }} : {{ new Date(film.showAt * 1000).getMinutes() }}</span>
             <span>{{ new Date(film.endAt * 1000).getHours() }} : {{ new Date(film.endAt * 1000).getMinutes() }}散场</span>
           </div>
-          <div>
+          <div class="middle">
             <span>{{ film.filmLanguage }}{{ film.imagery }}</span>
             <span>{{ film.hallName }}</span>
           </div>
           <div class="price">￥{{ film.salePrice / 100 }}</div>
-          <div class="sale">购票</div>
+          <router-link class="sale" :to="'/pay/'">购票</router-link>
         </li>
       </van-tab>
       <van-tab title="后天">
@@ -61,12 +61,12 @@
             <span>{{ new Date(film.showAt * 1000).getHours() }} : {{ new Date(film.showAt * 1000).getMinutes() }}</span>
             <span>{{ new Date(film.endAt * 1000).getHours() }} : {{ new Date(film.endAt * 1000).getMinutes() }}散场</span>
           </div>
-          <div>
+          <div class="middle">
             <span>{{ film.filmLanguage }}{{ film.imagery }}</span>
             <span>{{ film.hallName }}</span>
           </div>
           <div class="price">￥{{ film.salePrice / 100 }}</div>
-          <div class="sale">购票</div>
+          <router-link class="sale" :to="'/pay'">购票</router-link>
         </li>
       </van-tab>
     </van-tabs>
@@ -100,7 +100,7 @@ export default {
         }
       },
       item: {},
-      date: Date.parse(new Date().toLocaleDateString()) / 1000,
+      // date: Date.parse(new Date().toLocaleDateString()) / 1000,
       filmId: '',
       active: 0
     }
@@ -142,14 +142,16 @@ export default {
     },
     fn1: function (data) {
       let num = this.getRandom()
+      let date = this.cinemaDetails[0].showDate[0]
       this.item = data
       this.filmId = this.item.filmId
-      this.getFilmShowList([this.$route.params.id, num, this.filmId, this.date])
+      this.getFilmShowList([this.$route.params.id, num, this.filmId, date])
     },
     fn3: function (index, title) {
       let num = this.getRandom()
       if (index === 0) {
-        this.getFilmShowList([this.$route.params.id, num, this.filmId, this.date])
+        let date = this.cinemaDetails[0].showDate[0]
+        this.getFilmShowList([this.$route.params.id, num, this.filmId, date])
       }
       if (index === 1) {
         let date = this.cinemaDetails[0].showDate[1]
@@ -197,6 +199,7 @@ export default {
       border: 1px solid #ffb232;
       margin-right: 5px;
       color: #ffb232;
+      padding: 2px;
     }
   }
   .address {

@@ -48,7 +48,8 @@ const router = new VueRouter({
     { path: '/addcoupon', name: 'addcoupon', component: Addcoupon },
     { path: '/buy', name: 'buy', component: Buy },
     { path: '/addcard', name: 'addcard', component: Addcard },
-    { path: '/search', name: 'search', component: Search }
+    { path: '/search', name: 'search', component: Search },
+    { path: '/pay', name: 'pay', component: () => import('../views/pay/index.vue') }
 
   ]
 })

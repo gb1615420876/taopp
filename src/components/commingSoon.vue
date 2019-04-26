@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions,mapMutations } from 'vuex'
+import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
   computed: {
     ...mapState('film', [
@@ -73,8 +73,8 @@ export default {
     ...mapMutations('film', [
       'setFilmName'
     ]),
-    fn1 ( filmName ) {
-      this.$router.push({ name: 'buy'})
+    fn1 (filmName) {
+      this.$router.push({ name: 'buy' })
       this.setFilmName(filmName)
     }
   },
