@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { Tabbar, TabbarItem, Tab, Tabs, List, Search, NavBar, Icon } from 'vant'
+import { Tabbar, TabbarItem, Tab, Tabs, List, Search, NavBar, Icon, Button } from 'vant'
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
@@ -19,6 +19,7 @@ Vue.use(Tabbar)
   .use(Search)
   .use(swiper)
   .use(swiperSlide)
+  .use(Button)
 
 new Vue({
   store,
