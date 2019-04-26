@@ -76,13 +76,13 @@ export default {
 
     }
   },
-  computed:{
-    ...mapState('FilmDetails',[
+  computed: {
+    ...mapState('FilmDetails', [
       'filmdetails'
     ])
   },
   methods: {
-    ...mapActions('FilmDetails',[
+    ...mapActions('FilmDetails', [
       'getfilmdetails'
     ])
   },
@@ -94,20 +94,16 @@ export default {
         this.$nextTick(() => {
           new Swiper('.a', {
             slidesPerView : 3,
-            slidesPerGroup : 3,
+            slidesPerGroup : 3
           })
         })
       }
     })
-
   },
   components: {
     swiper,
     swiperSlide
-  },
-   mounted() {
-
-   }
+  }
 }
 
 </script>

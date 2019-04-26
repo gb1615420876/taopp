@@ -8,7 +8,7 @@ const getters = {
 }
 const mutations = {
   setCinameList (state, list) {
-    state.cinemaList =list
+    state.cinemaList = list
   },
   setarr (state, arr) {
     state.arr = arr
@@ -37,7 +37,7 @@ const actions = {
     let arr = state.cinemaList.filter(item => {
       return item.name.indexOf(value) > -1
     })
-    commit('setarr',arr)
+    commit('setarr', arr)
   }
 }
 export default {
