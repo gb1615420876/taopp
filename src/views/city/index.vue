@@ -90,10 +90,9 @@ export default {
   created: function () {
     this.getCityList()
   },
-  beforeUpdate() {
-    this.isshow = true;
-
-  },
+  beforeUpdate () {
+    this.isshow = true
+  }
 }
 </script>
 
