@@ -10,8 +10,8 @@
 export default {
   data () {
     return {
-      path1: 'http://b-ssl.duitang.com/uploads/item/201707/13/20170713020609_NSFfd.thumb.700_0.jpeg',
-      path2: 'http://www.t-chs.com/tuhsJDEwLmFsaWNkbi5jb20vaTIvMjQwNTg4MDYyOC9UQjJvalZEbkNCWUJlTmp5MEZlWFhibm1GWGFfISEyNDA1ODgwNjI4JDk.jpg'
+      path1: './images/pay1.jpeg',
+      path2: './images/pay2.jpg'
     }
   }
 }
