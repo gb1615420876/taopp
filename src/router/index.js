@@ -1,24 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Index from '../views/index/Index.vue'
-import Cinema from '../views/index/Cinema.vue'
-import Film from '../views/index/Film.vue'
-import Home from '../views/index/Home.vue'
-import City from '../views/city/index.vue'
-import Ticket from '../views/ticket/index.vue'
-import Coupon from '../views/coupon/index.vue'
-import Card from '../views/card/index.vue'
-import Help from '../views/card/help.vue'
-import Login from '../views/login/index.vue'
-import PhoneLogin from '../views/login/phone.vue'
-import Register from '../views/login/register.vue'
-import CinemasDetails from '../views/details/cinemasDetails.vue'
-import FilmDetails from '../views/filmDetails/index.vue'
-import Problem from '../components/problem.vue'
-import Addcoupon from '../components/addcoupon.vue'
-import Buy from '../views/buy/index.vue'
-import Addcard from '../components/addcard.vue'
-import Search from '../views/search/index.vue'
 
 Vue.use(VueRouter)
 
@@ -26,31 +7,30 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      component: Index,
+      component: () => import('../views/index/Index.vue'),
       children: [
-        { path: 'films', name: 'films', component: Film, meta: { tabNumber: 0 } },
-        { path: 'cinemas', name: 'cinemas', component: Cinema, meta: { tabNumber: 1 } },
-        { path: 'home', name: 'homes', component: Home, meta: { tabNumber: 2 } },
+        { path: 'films', name: 'films', component: () => import('../views/index/Film.vue'), meta: { tabNumber: 0 } },
+        { path: 'cinemas', name: 'cinemas', component: () => import('../views/index/Cinema.vue'), meta: { tabNumber: 1 } },
+        { path: 'home', name: 'homes', component: () => import('../views/index/Home.vue'), meta: { tabNumber: 2 } },
         { path: '', redirect: '/films' }
       ]
     },
-    { path: '/city', name: 'city', component: City },
-    { path: '/ticket', name: 'ticket', component: Ticket },
-    { path: '/coupon', name: 'coupon', component: Coupon },
-    { path: '/card', name: 'card', component: Card },
-    { path: '/help', name: 'help', component: Help },
-    { path: '/login', name: 'login', component: Login },
-    { path: '/phone_login', name: 'phone_login', component: PhoneLogin },
-    { path: '/register', name: 'register', component: Register },
-    { path: '/cinemasDetails/:id', name: 'cinemasDetails', component: CinemasDetails },
-    { path: '/filmDetails/:id', name: 'filmDetails', component: FilmDetails },
-    { path: '/problem', name: 'problem', component: Problem },
-    { path: '/addcoupon', name: 'addcoupon', component: Addcoupon },
-    { path: '/buy', name: 'buy', component: Buy },
-    { path: '/addcard', name: 'addcard', component: Addcard },
-    { path: '/search', name: 'search', component: Search },
-    { path: '/pay', name: 'pay', component: () => import('../views/pay/index.vue') }
-
+    { path: '/pay', name: 'pay', component: () => import('../views/pay/index.vue') },
+    { path: '/city', name: 'city', component: () => import('../views/city/index.vue') },
+    { path: '/ticket', name: 'ticket', component: () => import('../views/ticket/index.vue') },
+    { path: '/coupon', name: 'coupon', component: () => import('../views/coupon/index.vue') },
+    { path: '/card', name: 'card', component: () => import('../views/card/index.vue') },
+    { path: '/help', name: 'help', component: () => import('../views/card/help.vue') },
+    { path: '/login', name: 'login', component: () => import('../views/login/index.vue') },
+    { path: '/phone_login', name: 'phone_login', component: () => import('../views/login/phone.vue') },
+    { path: '/register', name: 'register', component: () => import('../views/login/register.vue') },
+    { path: '/cinemasDetails/:id', name: 'cinemasDetails', component: () => import('../views/details/cinemasDetails.vue') },
+    { path: '/filmDetails/:id', name: 'filmDetails', component: () => import('../views/filmDetails/index.vue') },
+    { path: '/problem', name: 'problem', component: () => import('../components/problem.vue') },
+    { path: '/addcoupon', name: 'addcoupon', component: () => import('../components/addcoupon.vue') },
+    { path: '/buy', name: 'buy', component: () => import('../views/buy/index.vue') },
+    { path: '/addcard', name: 'addcard', component: () => import('../components/addcard.vue') },
+    { path: '/search', name: 'search', component: () => import('../views/search/index.vue') }
   ]
 })
 
