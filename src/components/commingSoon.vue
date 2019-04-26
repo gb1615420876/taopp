@@ -36,7 +36,7 @@
                   <span class="label">{{ item.nation }} | {{ item.runtime }}分钟</span>
                 </div>
               </div>
-              <div class="buy">预约</div>
+              <div class="buy" @click.stop.prevent="fn1( item.name )">预约</div>
             </router-link>
           </li>
         </ul>
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions,mapMutations } from 'vuex'
 export default {
   computed: {
     ...mapState('film', [
@@ -60,7 +60,6 @@ export default {
       get () {
         return this.$store.state.film.loading
       },
-
       set (value) {
         this.$store.commit('film/setLoading', value)
       }
@@ -70,7 +69,14 @@ export default {
   methods: {
     ...mapActions('film', [
       'getFilmList'
-    ])
+    ]),
+    ...mapMutations('film', [
+      'setFilmName'
+    ]),
+    fn1 ( filmName ) {
+      this.$router.push({ name: 'buy'})
+      this.setFilmName(filmName)
+    }
   },
 
   filters: {
