@@ -73,9 +73,6 @@ const mutations = {
     localStorage.setItem('trueCity', arr[0])
     localStorage.setItem('trueCityId', arr[1])
     state.trueCity = arr[0]
-    // let clickcity = state.cityList.filter(itme => {
-    //   return itme.name == arr[0]
-    // })
     state.cityId = arr[1]
   }
 }

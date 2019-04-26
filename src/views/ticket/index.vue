@@ -35,7 +35,7 @@ export default {
     let username = localStorage.getItem('username')
     if (username === null) {
       this.$router.push({ name: 'login' })
-    } else{
+    } else {
       this.getTicketList()
     }
   }

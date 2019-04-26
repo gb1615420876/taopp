@@ -11,9 +11,9 @@ const mutations = {
   }
 }
 const actions = {
-  //根据电影的id获取其详情
+  // 根据电影的id获取其详情
   getfilmdetails ({ commit }, payload) {
-    axios.get('https://m.maizuo.com/gateway',{
+    axios.get('https://m.maizuo.com/gateway', {
       params: {
         filmId: payload.filmId,
         k: 2601573
@@ -22,16 +22,15 @@ const actions = {
         'X-Client-Info': '{"a":"3000","ch":"1002","v":"5.0.4","e":"1555072806618475291288"}',
         'X-Host': 'mall.film-ticket.film.info'
       }
-    })
-    .then(res => {
-      let result =res.data
-      if(result.status === 0){
-        commit('setfilmdetails',result.data.film)
+    }).then(res => {
+      let result = res.data
+      if (result.status === 0) {
+        commit('setfilmdetails', result.data.film)
         console.log(result.data.film)
       } else {
         alert('错误')
       }
-      payload.callback();
+      payload.callback()
     })
   }
 }

@@ -1,6 +1,13 @@
 <template>
   <div class="main index">
-    <router-view></router-view>
+    <transition
+    mode="out-in"
+    appear
+    enter-active-class="animated bounceInRight"
+    leave-active-class="animated bounceOutLeft"
+    >
+      <router-view></router-view>
+    </transition>
      <van-tabbar
       v-model="active"
       active-color="#ff5f16">

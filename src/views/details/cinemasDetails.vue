@@ -3,26 +3,28 @@
     <van-icon name="arrow-left" class="left" @click="$router.back()"/>
     <div class="cinemaName">{{ cinemaId.name }}</div>
     <div class="ticketType">
-      <span v-for="item in cinemaId.services" :key="item.name">{{ item.name }}</span>
+      <span v-for="b in cinemaId.services" :key="b.name">{{ b.name }}</span>
       <van-icon name="arrow"/>
     </div>
     <div class="address">
-      <van-icon name="location-o" class="left" />
+      <van-icon name="location-o" class="left" size="20px" />
       <span>{{ cinemaId.address }}</span>
-      <van-icon name="phone-o" class="right"/>
+      <van-icon name="phone-o" class="right" size="20px"/>
     </div>
     <div class="swiperBox">
-      <swiper ref="mySwiper">
-        <!-- slides -->
-        <swiper-slide>I'm Slide 1</swiper-slide>
-        <swiper-slide>I'm Slide 2</swiper-slide>
-        <swiper-slide>I'm Slide 3</swiper-slide>
-        <!-- Optional controls -->
-        <!-- <div class="swiper-pagination"  slot="pagination"></div> -->
-        <!-- <div class="swiper-button-prev" slot="button-prev"></div> -->
-        <!-- <div class="swiper-button-next" slot="button-next"></div> -->
-        <!-- <div class="swiper-scrollbar"   slot="scrollbar"></div> -->
+      <swiper :options="swiperOption">
+        <swiper-slide v-for="a in cinemaDetails" :key="a.filmId">
+          <img :src="a.poster" alt="" @click="fn1(a)">
+        </swiper-slide>
       </swiper>
+    </div>
+    <div class="filmName">
+      <div class="top">
+        <p class="leftName"> {{ item.name }} &nbsp;</p>
+        <em>{{ item.grade }} &nbsp;</em>分
+      </div>
+      <p class="bottom">{{ item.category }} | {{ item.runtime }}分钟 | {{ item.director }}</p>
+      <van-icon name="arrow" class="arrow-right"/>
     </div>
   </div>
 </template>
@@ -32,6 +34,32 @@ import { mapState, mapActions } from 'vuex'
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
+  data () {
+    return {
+      // 轮播图
+      swiperOption: {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slideToClickedSlide: true,
+        preventLinksPropagation: true,
+        slidesPerView: 'auto',
+        coverflowEffect: {
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true
+        },
+        pagination: {
+          el: '.swiper-pagination'
+        }
+      },
+      item: {},
+      date: Date.parse(new Date().toLocaleDateString()) / 1000,
+      filmId: ''
+    }
+  },
   components: {
     swiper,
     swiperSlide
@@ -41,13 +69,21 @@ export default {
       'cinemaId',
       'cinemaDetails'
     ])
+
+  },
+  // 监听数据变化，第一次渲染
+  watch: {
+    cinemaDetails (newVal, oldVal) {
+      if (newVal !== oldVal) {
+        this.fn1(newVal[0])
+      }
+    }
   },
   methods: {
     ...mapActions('CinemaDetails', [
-      'getCinemaId'
-    ]),
-    ...mapActions('CinemaDetails', [
-      'getCinemaDetails'
+      'getCinemaId',
+      'getCinemaDetails',
+      'getFilmShowList'
     ]),
     getRandom: function () {
       let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -58,10 +94,13 @@ export default {
         code += arr[randomI]
       }
       return code
+    },
+    fn1: function (data) {
+      let num = this.getRandom()
+      this.item = data
+      this.filmId = this.item.filmId
+      this.getFilmShowList([this.$route.params.id, num, this.filmId, this.date])
     }
-  },
-  mounted () {
-
   },
   created () {
     let num = this.getRandom()
@@ -86,7 +125,7 @@ export default {
     box-sizing: border-box;
     width: 100%;
     height: 44px;
-    padding-left: 140px;
+    padding-left: 130px;
     line-height: 44px;
     color: #ffb232;
     span {
@@ -101,20 +140,87 @@ export default {
   .address {
     width: 100%;
     height: 44px;
-    line-height: 44px;
+    box-sizing: border-box;
+    position: relative;
+    padding-left: 45px;
     .left {
       margin-right: 10px;
+      position: absolute;
+      top: 2px;
+      left: 10px;
     }
     span {
       display: inline-block;
+      width: 270px;
       height: 44px;
       line-height: 44px;
       margin-right: 35px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .right {
+      position: absolute;
+      top: 10px;
+      left: 340px;
     }
   }
   .swiperBox {
     width: 100%;
-    height: 160px;
+    height: 140px;
     background: pink;
+    padding-top: 20px;
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 90px;
+      height: 130px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .filmName {
+    width: 100%;
+    height: 50px;
+    background: yellow;
+    padding: 15px 0;
+    position: relative;
+    .top {
+      width: 100%;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+      .leftName {
+        height: 20px;
+        float: left;
+        font-size: 16px;
+        line-height: 20px;
+      }
+      em {
+        float: left;
+        font-style: oblique;
+      }
+    }
+    .bottom {
+      box-sizing: border-box;
+      width: 100%;
+      height: 20px;
+      font-size: 13px;
+      color: #797d82;
+      line-height: 20px;
+      text-align: center;
+      padding: 0 40px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+    }
+    .arrow-right {
+      position: absolute;
+      top: 30px;
+      right: 10px;
+    }
   }
 </style>

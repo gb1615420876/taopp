@@ -12,10 +12,13 @@ import Help from '../views/card/help.vue'
 import Login from '../views/login/index.vue'
 import PhoneLogin from '../views/login/phone.vue'
 import Register from '../views/login/register.vue'
-import Search from '../views/search/index.vue'
 import CinemasDetails from '../views/details/cinemasDetails.vue'
 import FilmDetails from '../views/filmDetails/index.vue'
+import Problem from '../components/problem.vue'
+import Addcoupon from '../components/addcoupon.vue'
 import Buy from '../views/buy/index.vue'
+import Addcard from '../components/addcard.vue'
+import Search from '../views/search/index.vue'
 
 Vue.use(VueRouter)
 
@@ -31,7 +34,6 @@ const router = new VueRouter({
         { path: '', redirect: '/films' }
       ]
     },
-    { path: '/search', name: 'search', component: Search },
     { path: '/city', name: 'city', component: City },
     { path: '/ticket', name: 'ticket', component: Ticket },
     { path: '/coupon', name: 'coupon', component: Coupon },
@@ -42,7 +44,12 @@ const router = new VueRouter({
     { path: '/register', name: 'register', component: Register },
     { path: '/cinemasDetails/:id', name: 'cinemasDetails', component: CinemasDetails },
     { path: '/filmDetails/:id', name: 'filmDetails', component: FilmDetails },
-    { path: '/buy', name: 'buy', component: Buy }
+    { path: '/problem', name: 'problem', component: Problem },
+    { path: '/addcoupon', name: 'addcoupon', component: Addcoupon },
+    { path: '/buy', name: 'buy', component: Buy },
+    { path: '/addcard', name: 'addcard', component: Addcard },
+    { path: '/search', name: 'search', component: Search }
+
   ]
 })
 
