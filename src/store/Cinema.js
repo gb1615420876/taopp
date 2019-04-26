@@ -15,6 +15,7 @@ const mutations = {
   }
 }
 const actions = {
+  // 根据城市获取该城市的电影院列表
   getCinemaList ({ commit, rootState }) {
     let cityId = rootState.city.cityId
     axios.get('https://m.maizuo.com/gateway', {

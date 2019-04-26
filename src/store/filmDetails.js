@@ -11,6 +11,7 @@ const mutations = {
   }
 }
 const actions = {
+  // 根据电影的id获取其详情
   getfilmdetails ({ commit }, payload) {
     axios.get('https://m.maizuo.com/gateway', {
       params: {

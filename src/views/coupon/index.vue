@@ -8,7 +8,7 @@
      :line-width="60"
      sticky>
       <van-tab title="优惠券">
-        <div class="Other-coupon">添加优惠券</div>
+        <div class="Other-coupon" @click="$router.push({ name: 'addcoupon'})">添加优惠券</div>
         <ul class="couponList">
           <li v-for="couponItme in CouponList"
           :key="couponItme.id">
@@ -58,6 +58,12 @@ export default {
   },
   created: function () {
     this.getCouponList()
+    let username = localStorage.getItem('username')
+    if (username === null) {
+      this.$router.push({ name: 'login' })
+    } else {
+      this.username = username
+    }
   }
 }
 </script>

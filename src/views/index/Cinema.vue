@@ -24,7 +24,6 @@ import { mapActions, mapState } from 'vuex'
 export default {
   data () {
     return {
-      path: './images/logo.jpg'
     }
   },
   computed: {

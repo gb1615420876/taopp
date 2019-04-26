@@ -4,14 +4,14 @@
       title="选择城市"
       right-text="✕"
       left-arrow
-      @click-right="$router.replace({ name: 'films'})"
-      @click-left="$router.replace({ name: 'films'})"
+      @click-right="$router.back()"
+      @click-left="$router.back()"
     />
     <div class="city-list">
       <ol class="auto-top">
         <div id="list-now">
           <h3>当前</h3>
-          <li @click="cityOk('深圳')">深圳</li>
+          <li @click="cityOk('深圳', 440300)">深圳</li>
         </div>
         <div id="list-GPS">
           <h3>GPS</h3>
@@ -22,7 +22,7 @@
           <ul>
             <li v-for="city in hotCitys"
             :key="city.cityId"
-            @click='cityOk(city.name)'>{{ city.name }}</li>
+            @click='cityOk(city.name, city.cityId)'>{{ city.name }}</li>
           </ul>
         </div>
         <div v-for='item in newCityList'
@@ -33,28 +33,36 @@
             <li
             v-for='city in item.citys'
             :key='city.cityId'
-            @click='cityOk(city.name)'
+            @click='cityOk(city.name, city.cityId)'
             >{{ city.name }}</li>
           </ul>
         </div>
       </ol>
     </div>
-    <div class="fixed-list">
+    <transition
+    enter-active-class="animated bounceInRight">
+    <div v-show='isshow' class="fixed-list">
       <ul>
         <li @click="scroll('now')">当前</li>
         <li @click="scroll('GPS')">GPS</li>
         <li @click="scroll('hot')">热门</li>
         <li v-for="letter in fiexdList"
         :key="letter"
-        @click="scroll(letter)">{{letter}}</li>
+        @click="scroll(letter)">{{ letter }}</li>
       </ul>
     </div>
+    </transition>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
+  data () {
+    return {
+      isshow: false
+    }
+  },
   computed: {
     ...mapGetters('city', [
       'newCityList',
@@ -69,8 +77,8 @@ export default {
     ...mapMutations('city', [
       'trueCity'
     ]),
-    cityOk (city) {
-      this.trueCity(city)
+    cityOk (city, cityId) {
+      this.trueCity([city, cityId])
       this.$router.back()
     },
     scroll (letter) {
@@ -81,6 +89,9 @@ export default {
   },
   created: function () {
     this.getCityList()
+  },
+  beforeUpdate () {
+    this.isshow = true
   }
 }
 </script>
