@@ -15,7 +15,7 @@ const mutations = {
   }
 }
 const actions = {
-  // 根据城市获取该城市的电影院列表
+  //根据城市获取该城市的电影院列表
   getCinemaList ({ commit, rootState }) {
     let cityId = rootState.city.cityId
     axios.get('https://m.maizuo.com/gateway', {
@@ -38,7 +38,7 @@ const actions = {
     let arr = state.cinemaList.filter(item => {
       return item.name.indexOf(value) > -1
     })
-    commit('setarr', arr)
+    commit('setarr',arr)
   }
 }
 export default {

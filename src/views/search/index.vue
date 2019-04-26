@@ -3,14 +3,14 @@
     <form action="/">
     <van-search
       v-model.lazy="value"
-      placeholder="请输入电影院名称"
+      placeholder="请输入当前地址的电影院名称"
       show-action
       @search="onSearch"
       @cancel="$router.back()"
     />
   </form>
   <ul v-show="isshow" class="list-ul">
-    <li v-for="item in arr" :key="item.cinemaId" class="list-li" >
+    <li v-for="item in arr" :key="item.cinemaId" class="list-li" v-show="isshow">
       <router-link :to="'/cinemasDetails/' + item.cinemaId ">
       <div class="list-title">
         <span class="cinema-name">{{ item.name }}</span>
@@ -47,6 +47,7 @@ export default {
       'searchCinema'
     ])
   },
+
   created () {
     this.getCinemaList()
   }

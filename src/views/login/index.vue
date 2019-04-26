@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     Sign_in () {
-      if (this.value != '' && this.pwd != '') {
+      if (this.value !== '' && this.pwd !== '') {
         localStorage.setItem('username', this.value)
         this.$router.back()
       }

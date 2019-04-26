@@ -9,7 +9,7 @@
         <ul>
           <li class="item"
             v-for="item in filmList"
-            :key="item.filmId">
+            :key="item.filmId" >
             <router-link :to="'/filmDetails/' + item.filmId ">
               <div class="img">
                 <img :src="item.poster" alt />
@@ -30,7 +30,7 @@
                   <span class="label">{{ item.nation }} | {{ item.runtime }}分钟</span>
                 </div>
               </div>
-              <div class="buy">购票</div>
+              <div class="buy" @click.stop.prevent="fn1( item.name )">购票</div>
             </router-link>
           </li>
         </ul>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState, mapMutations } from 'vuex'
 export default {
 /*   data () {
     return {
@@ -70,6 +70,13 @@ export default {
   methods: {
     ...mapActions('film', [
       'getFilmList'
+    ]),
+    fn1 ( filmName ) {
+      this.$router.push({ name: 'buy'})
+      this.setFilmName(filmName)
+    },
+    ...mapMutations('film', [
+      'setFilmName'
     ])
   },
 

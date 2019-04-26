@@ -3,7 +3,7 @@ import axios from 'axios'
 const state = {
   CouponList: []
 }
-const geters ={
+const geters = {
 
 }
 
@@ -14,7 +14,7 @@ const mutations = {
 }
 const actions = {
   getCouponList ({ commit }) {
-    axios.get('/json/coupon.json').then( res => {
+    axios.get('/json/coupon.json').then(res => {
       commit('setCouponList', res.data)
     })
   }

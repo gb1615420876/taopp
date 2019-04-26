@@ -5,7 +5,8 @@ const state = {
   filmPageNum: 1,
   filmPageSize: 20,
   filmTotal: 20,
-  loading: false
+  loading: false,
+  filmName:''
 }
 
 const getters = {
@@ -25,7 +26,9 @@ const mutations = {
   setFilmList (state, list) {
     state.filmList.push(...list)
   },
-
+  setFilmName (state, name) {
+    state.filmName = name
+  },
   // 下一页
   addPageNum (state) {
     state.filmPageNum += 1

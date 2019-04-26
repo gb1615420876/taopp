@@ -9,14 +9,14 @@ const getters = {
 }
 
 const mutations = {
-  setTicketList (state,list) {
+  setTicketList (state, list) {
     state.ticketList = list
   }
 }
 const actions = {
   getTicketList ({ commit }) {
     axios.get('./json/ticket.json').then(res => {
-      commit('setTicketList',res.data)
+      commit('setTicketList', res.data)
     })
   }
 }

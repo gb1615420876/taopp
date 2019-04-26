@@ -1,6 +1,6 @@
 <template>
   <div class="home-film">
-      <van-tabs v-model="curTab" @click="onTabClick">
+      <van-tabs v-model="curTab" @click="onTabClick" sticky>
         <van-tab title="正在上映">
           <nowPlaying v-if="curTab === 0"></nowPlaying>
         </van-tab>
