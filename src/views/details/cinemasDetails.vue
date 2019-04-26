@@ -26,6 +26,50 @@
       <p class="bottom">{{ item.category }} | {{ item.runtime }}分钟 | {{ item.director }}</p>
       <van-icon name="arrow" class="arrow-right"/>
     </div>
+    <van-tabs v-model="active" @click="fn3" sticky>
+      <van-tab title="今天">
+        <li class="filmTime" v-for="film in filmShowList" :key="film.scheduleId">
+          <div>
+            <span>{{ new Date(film.showAt * 1000).getHours() }} : {{ new Date(film.showAt * 1000).getMinutes() }}</span>
+            <span>{{ new Date(film.endAt * 1000).getHours() }} : {{ new Date(film.endAt * 1000).getMinutes() }}散场</span>
+          </div>
+          <div class="middle">
+            <span>{{ film.filmLanguage }}{{ film.imagery }}</span>
+            <span>{{ film.hallName }}</span>
+          </div>
+          <div class="price">￥{{ film.salePrice / 100 }}</div>
+          <router-link class="sale" :to="'/buy/' + filmId">购票</router-link>
+        </li>
+      </van-tab>
+      <van-tab title="明天" >
+        <li class="filmTime" v-for="film in filmShowList" :key="film.scheduleId">
+          <div>
+            <span>{{ new Date(film.showAt * 1000).getHours() }} : {{ new Date(film.showAt * 1000).getMinutes() }}</span>
+            <span>{{ new Date(film.endAt * 1000).getHours() }} : {{ new Date(film.endAt * 1000).getMinutes() }}散场</span>
+          </div>
+          <div>
+            <span>{{ film.filmLanguage }}{{ film.imagery }}</span>
+            <span>{{ film.hallName }}</span>
+          </div>
+          <div class="price">￥{{ film.salePrice / 100 }}</div>
+          <div class="sale">购票</div>
+        </li>
+      </van-tab>
+      <van-tab title="后天">
+        <li class="filmTime" v-for="film in filmShowList" :key="film.scheduleId">
+          <div>
+            <span>{{ new Date(film.showAt * 1000).getHours() }} : {{ new Date(film.showAt * 1000).getMinutes() }}</span>
+            <span>{{ new Date(film.endAt * 1000).getHours() }} : {{ new Date(film.endAt * 1000).getMinutes() }}散场</span>
+          </div>
+          <div>
+            <span>{{ film.filmLanguage }}{{ film.imagery }}</span>
+            <span>{{ film.hallName }}</span>
+          </div>
+          <div class="price">￥{{ film.salePrice / 100 }}</div>
+          <div class="sale">购票</div>
+        </li>
+      </van-tab>
+    </van-tabs>
   </div>
 </template>
 
@@ -57,7 +101,8 @@ export default {
       },
       item: {},
       date: Date.parse(new Date().toLocaleDateString()) / 1000,
-      filmId: ''
+      filmId: '',
+      active: 0
     }
   },
   components: {
@@ -67,9 +112,9 @@ export default {
   computed: {
     ...mapState('CinemaDetails', [
       'cinemaId',
-      'cinemaDetails'
+      'cinemaDetails',
+      'filmShowList'
     ])
-
   },
   // 监听数据变化，第一次渲染
   watch: {
@@ -100,6 +145,20 @@ export default {
       this.item = data
       this.filmId = this.item.filmId
       this.getFilmShowList([this.$route.params.id, num, this.filmId, this.date])
+    },
+    fn3: function (index, title) {
+      let num = this.getRandom()
+      if (index === 0) {
+        this.getFilmShowList([this.$route.params.id, num, this.filmId, this.date])
+      }
+      if (index === 1) {
+        let date = this.cinemaDetails[0].showDate[1]
+        this.getFilmShowList([this.$route.params.id, num, this.filmId, date])
+      }
+      if (index === 2) {
+        let date = this.cinemaDetails[0].showDate[2]
+        this.getFilmShowList([this.$route.params.id, num, this.filmId, date])
+      }
     }
   },
   created () {
@@ -125,13 +184,16 @@ export default {
     box-sizing: border-box;
     width: 100%;
     height: 44px;
-    padding-left: 130px;
     line-height: 44px;
     color: #ffb232;
+    display:flex;
+    justify-content: center;
+    align-items: center;
     span {
+      display: block;
       font-size: 12px;
-      height: 44px;
-      line-height: 44px;
+      height: 20px;
+      line-height: 20px;
       border: 1px solid #ffb232;
       margin-right: 5px;
       color: #ffb232;
@@ -183,7 +245,6 @@ export default {
   .filmName {
     width: 100%;
     height: 50px;
-    background: yellow;
     padding: 15px 0;
     position: relative;
     .top {
@@ -221,6 +282,35 @@ export default {
       position: absolute;
       top: 30px;
       right: 10px;
+    }
+  }
+  .filmTime {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    font-size: 14px;
+    justify-content: space-around;
+    align-items: center;
+    div {
+      span {
+        display: block;
+      }
+    }
+    .middle {
+      width: 105px;
+      span {
+        width: 105px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    .price, .sale {
+      color: #ffb232
+    }
+    .sale {
+      border: 1px solid #ffb232;
+      padding: 5px;
     }
   }
 </style>

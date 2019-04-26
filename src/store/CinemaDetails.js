@@ -70,7 +70,6 @@ const actions = {
         'X-Host': 'mall.film-ticket.schedule.list'
       }
     }).then(res => {
-      console.log(res)
       if (res.data.status === 0) {
         commit('setFilmShowList', res.data.data.schedules)
       }

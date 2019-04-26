@@ -61,7 +61,6 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import Swiper from 'swiper'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
   data () {
     return {
